@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Slf4j
 @Configuration
-public class MybatisPlusConf {
+public class MybatisPlusConfig {
 
 
     //    mybatisPlus全局配置

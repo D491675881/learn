@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @Configuration
-public class DruidConf {
+public class DruidConfig {
 
     @Value("${connection.url}")
     private String connectionUrl;
