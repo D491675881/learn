@@ -5,17 +5,22 @@ import com.lhcis.demo.entity.User;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.*;
 
+@Slf4j
 @RestController
 public class UserController {
 
     // 创建线程安全的Map
-    static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
+    static Map<Integer, User> users = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * 根据ID查询用户
@@ -144,4 +149,18 @@ public class UserController {
     public String jsonTest() {
         return " hi you!";
     }
+
+
+    @PostMapping("create")
+    public Object createUser(ModelMap map, @ModelAttribute @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+//            System.err.println(bindingResult.toString());
+            log.info(bindingResult.toString());
+            return bindingResult.getAllErrors();
+        }
+        users.put(user.getId(), user);
+        return user.toString();
+    }
+
+
 }
