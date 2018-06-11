@@ -97,8 +97,8 @@ mybatisPlus:
 
 logging:
   level:
-    com.lhcis.demo.controller: ERROR, WARN, INFO, DEBUG or TRACE
+    com.lhcis.demo.controller:  DEBUG
     com.lhcis.demo.service: info
   path: log
-
+#ERROR, WARN, INFO, DEBUG or TRACE
 
